@@ -1,4 +1,4 @@
-Bunny.net DNS Authenticator plugin for Certbot
+Bunny.net DNS Authenticator Plugin for Certbot
 ==============================================
 
 Full documentation is on `Read the Docs
