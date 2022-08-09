@@ -96,6 +96,10 @@ class _BunnyClient:
         post_headers = self.headers
         post_headers["Content-Type"] = "application/json"
 
+        # Check if record_name contains domain (it should) and remove it
+        if record_name.endswith(domain):
+            record_name = record_name[:-(len(domain)+1)]
+
         payload = {
             "Type": 3,
             "Ttl": record_ttl,
@@ -132,6 +136,10 @@ class _BunnyClient:
         except errors.PluginError as e:
             logger.debug('Encountered error finding zone_id during deletion: %s', e)
             return
+
+        # Check if record_name contains domain (it should) and remove it
+        if record_name.endswith(domain):
+            record_name = record_name[:-(len(domain)+1)]
 
         if zone_id:
             record_id = self._find_txt_record_id(zone_id, record_name, record_content)
