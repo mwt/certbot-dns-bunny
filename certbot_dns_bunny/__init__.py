@@ -64,7 +64,7 @@ Examples
    :caption: To acquire a certificate for ``example.com``
 
    certbot certonly \\
-     --dns-bunny \\
+     --authenticator dns-bunny \\
      --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \\
      -d example.com
 
@@ -73,7 +73,7 @@ Examples
              ``www.example.com``
 
    certbot certonly \\
-     --dns-bunny \\
+     --authenticator dns-bunny \\
      --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \\
      -d example.com \\
      -d www.example.com
@@ -83,7 +83,7 @@ Examples
              for DNS propagation
 
    certbot certonly \\
-     --dns-bunny \\
+     --authenticator dns-bunny \\
      --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \\
      --dns-bunny-propagation-seconds 60 \\
      -d example.com
