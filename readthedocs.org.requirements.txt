@@ -9,6 +9,6 @@
 
 # We also pin our dependencies for increased stability.
 
--e acme
--e certbot
--e certbot-dns-bunny[docs]
+acme
+certbot
+certbot-dns-bunny[docs]
