@@ -4,7 +4,7 @@ import sys
 from setuptools import find_packages
 from setuptools import setup
 
-version = '0.0.1.dev0'
+version = '0.0.1.dev2'
 
 install_requires = [
     'requests>=2.28.1',
@@ -30,6 +30,10 @@ docs_extras = [
     'sphinx_rtd_theme',
 ]
 
+# Load readme to use on PyPI
+with open('README.rst') as f:
+    readme = f.read()
+
 setup(
     name='certbot-dns-bunny',
     version=version,
@@ -38,6 +42,7 @@ setup(
     author="Matthew W. Thomas",
     author_email='certbot-dns-bunny@mwt.me',
     license='BSD-2-Clause',
+    long_description = readme,
     python_requires='>=3.7',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
