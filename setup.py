@@ -4,7 +4,7 @@ import sys
 from setuptools import find_packages
 from setuptools import setup
 
-version = '0.0.0.dev0'
+version = '0.0.1.dev0'
 
 install_requires = [
     'requests>=2.28.1',
@@ -43,7 +43,7 @@ setup(
         'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
         'Intended Audience :: System Administrators',
-        'License :: OSI Approved :: BSD-2-Clause',
+        'License :: OSI Approved :: BSD License',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
