@@ -4,10 +4,10 @@ import sys
 from setuptools import find_packages
 from setuptools import setup
 
-version = '0.0.2'
+version = '0.0.3'
 
 install_requires = [
-    'requests>=2.28.1',
+    'requests>=2.25.1',
     'setuptools>=41.6.0',
 ]
 
