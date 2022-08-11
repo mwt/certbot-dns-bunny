@@ -54,8 +54,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'certbot-dns-bunny'
-copyright = u'2017, Certbot Project'
-author = u'Certbot Project'
+copyright = u'2022, Matthew W. Thomas'
+author = u'Matthew W. Thomas'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -145,7 +145,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'certbot-dns-bunny.tex', u'certbot-dns-bunny Documentation',
-     u'Certbot Project', 'manual'),
+     u'Matthew W. Thomas', 'manual'),
 ]
 
 
