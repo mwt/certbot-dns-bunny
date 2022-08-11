@@ -21,9 +21,10 @@ Bunny.net DNS Authenticator Plugin for Certbot
     :alt: Snap Store Badge
     :target: https://snapcraft.io/certbot-dns-bunny
 
-Full documentation is on `Read the Docs
-<https://certbot-dns-bunny.readthedocs.io/en/latest/>`_.
+This plugin enables DNS verification with certbot when using `Bunny.net`_ DNS. Full documentation is on `Read the Docs`_.
 
+.. _Bunny.net: https://bunny.net?ref=e174a06f0l
+.. _Read the Docs: https://certbot-dns-bunny.readthedocs.io/en/latest/
 
 Installation
 ------------

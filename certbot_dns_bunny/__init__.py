@@ -1,12 +1,30 @@
 """
 The `~certbot_dns_bunny.dns_bunny` plugin automates the process of
 completing a ``dns-01`` challenge (`~acme.challenges.DNS01`) by creating, and
-subsequently removing, TXT records using the Bunny.net API.
+subsequently removing, TXT records using the `Bunny.net`_ API.
+
+.. _Bunny.net: https://bunny.net?ref=e174a06f0l
 
 .. note::
-   The plugin is not installed by default. It can be installed by heading to
-   `certbot.eff.org <https://certbot.eff.org/instructions#wildcard>`_, choosing your system and
-   selecting the Wildcard tab.
+   The plugin is not installed by default.
+
+Installation
+------------
+
+If you followed the official instructions, you likely installed certbot as a
+snap. In that case, you can install the plugin by running:
+
+.. code:: bash
+
+    snap install certbot-dns-bunny
+    sudo snap connect certbot:plugin certbot-dns-bunny
+
+Alternatively, you can install certbot using pip and install the plugin by
+running:
+
+.. code:: bash
+
+    pip install certbot-dns-bunny
 
 Named Arguments
 ---------------
