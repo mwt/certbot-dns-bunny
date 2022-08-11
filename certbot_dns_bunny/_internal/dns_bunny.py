@@ -2,8 +2,7 @@
 import logging
 from typing import Any
 from typing import Callable
-from typing import Dict
-from typing import List
+from typing import Tuple
 from typing import Optional
 
 import requests
@@ -90,15 +89,15 @@ class _BunnyClient:
         :raises certbot.errors.PluginError: if an error occurs communicating with the Bunny.net API
         """
 
-        zone_id = self._find_zone_id(domain)
+        zone_id, zone_name = self._find_zone_id(domain)
 
         # Set content type because we are posting
         post_headers = self.headers
         post_headers["Content-Type"] = "application/json"
 
-        # Check if record_name contains domain (it should) and remove it
-        if record_name.endswith(domain):
-            record_name = record_name[:-(len(domain)+1)]
+        # Check if record_name contains zone_name (it should) and remove it
+        if record_name.endswith(zone_name):
+            record_name = record_name[:-(len(zone_name)+1)]
 
         payload = {
             "Type": 3,
@@ -132,14 +131,14 @@ class _BunnyClient:
         """
 
         try:
-            zone_id = self._find_zone_id(domain)
+            zone_id, zone_name = self._find_zone_id(domain)
         except errors.PluginError as e:
             logger.debug('Encountered error finding zone_id during deletion: %s', e)
             return
 
-        # Check if record_name contains domain (it should) and remove it
-        if record_name.endswith(domain):
-            record_name = record_name[:-(len(domain)+1)]
+        # Check if record_name contains zone_name (it should) and remove it
+        if record_name.endswith(zone_name):
+            record_name = record_name[:-(len(zone_name)+1)]
 
         if zone_id:
             record_id = self._find_txt_record_id(zone_id, record_name, record_content)
@@ -153,13 +152,14 @@ class _BunnyClient:
         else:
             logger.debug('Zone not found; no cleanup needed.')
 
-    def _find_zone_id(self, domain: str) -> str:
+
+    def _find_zone_id(self, domain: str) -> Tuple[str, str]:
         """
         Find the zone_id for a given domain.
 
         :param str domain: The domain for which to find the zone_id.
-        :returns: The zone_id, if found.
-        :rtype: str
+        :returns: The zone_id and zone_name, if found.
+        :rtype: tuple(str, str)
         :raises certbot.errors.PluginError: if no zone_id is found.
         """
 
@@ -179,7 +179,7 @@ class _BunnyClient:
                 if dnszone["Domain"] == zone_name_guess:
                     zone_id = dnszone["Id"]
                     logger.debug('Found zone_id of %s for %s using name %s', zone_id, domain, dnszone["Domain"])
-                    return zone_id
+                    return zone_id, zone_name_guess
         raise errors.PluginError('Could not find zone in account.')
 
     def _find_txt_record_id(self, zone_id: str, record_name: str,
