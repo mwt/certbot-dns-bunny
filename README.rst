@@ -46,7 +46,7 @@ If you installed certbot as a snap, then you have to install this plugin as a sn
 .. code:: bash
 
     snap install certbot-dns-bunny
-    sudo snap connect certbot:plugin certbot-dns-bunny
+    snap connect certbot:plugin certbot-dns-bunny
 
 Credentials
 -----------

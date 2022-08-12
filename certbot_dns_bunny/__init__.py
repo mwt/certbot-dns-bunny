@@ -17,7 +17,7 @@ snap. In that case, you can install the plugin by running:
 .. code:: bash
 
     snap install certbot-dns-bunny
-    sudo snap connect certbot:plugin certbot-dns-bunny
+    snap connect certbot:plugin certbot-dns-bunny
 
 Alternatively, you can install certbot using pip and install the plugin by
 running:
