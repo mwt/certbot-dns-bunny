@@ -2,6 +2,6 @@ include LICENSE.txt
 include README.rst
 recursive-include docs *
 recursive-include tests *
-include certbot_dns_cloudflare/py.typed
+include certbot_dns_bunny/py.typed
 global-exclude __pycache__
 global-exclude *.py[cod]
