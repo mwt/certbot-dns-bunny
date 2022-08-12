@@ -62,23 +62,23 @@ Examples
 
 .. code:: bash
 
-   certbot certonly \\
-     --authenticator dns-bunny \\
-     --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \\
+   certbot certonly \
+     --authenticator dns-bunny \
+     --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \
      -d example.com
 
 .. code:: bash
 
-   certbot certonly \\
-     --authenticator dns-bunny \\
-     --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \\
-     -d example.com \\
+   certbot certonly \
+     --authenticator dns-bunny \
+     --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \
+     -d example.com \
      -d www.example.com
 
 .. code:: bash
 
-   certbot certonly \\
-     --authenticator dns-bunny \\
-     --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \\
-     --dns-bunny-propagation-seconds 60 \\
+   certbot certonly \
+     --authenticator dns-bunny \
+     --dns-bunny-credentials ~/.secrets/certbot/bunny.ini \
+     --dns-bunny-propagation-seconds 60 \
      -d example.com
