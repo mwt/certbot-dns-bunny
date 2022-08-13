@@ -30,12 +30,10 @@ Named Arguments
 ---------------
 
 ========================================  =====================================
-``--dns-bunny-credentials``          Bunny credentials_ INI file.
-                                          (Required)
-``--dns-bunny-propagation-seconds``  The number of seconds to wait for DNS
+``--dns-bunny-credentials``               Bunny credentials_ INI file. (Required)
+``--dns-bunny-propagation-seconds``       The number of seconds to wait for DNS
                                           to propagate before asking the ACME
-                                          server to verify the DNS record.
-                                          (Default: 10)
+                                          server to verify the DNS record. (Default: 10)
 ========================================  =====================================
 
 
