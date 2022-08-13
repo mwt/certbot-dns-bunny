@@ -9,6 +9,4 @@
 
 # We also pin our dependencies for increased stability.
 
-acme
-certbot
-certbot-dns-bunny[docs]
+-e ".[docs]"
