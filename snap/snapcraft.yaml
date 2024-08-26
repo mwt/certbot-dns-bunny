@@ -13,7 +13,7 @@ parts:
     source: .
     override-pull: |
       craftctl default
-      craftctl set version=$(grep ^version $SNAPCRAFT_PART_SRC/setup.py | cut -f2 -d= | tr -d "'[:space:]")
+      craftctl set version=$(grep ^version $SNAPCRAFT_PART_SRC/setup.py | cut -f2 -d= | tr -d "\"'[:space:]")
     build-environment:
       # We set this environment variable while building to try and increase the
       # stability of fetching the rust crates needed to build the cryptography
