@@ -11,7 +11,9 @@ install_requires = [
     "setuptools>=41.6.0",
 ]
 
-if not os.environ.get("SNAP_BUILD"):
+if os.environ.get("SNAP_BUILD"):
+    install_requires.append("packaging")
+else:
     install_requires.extend(
         [
             # We specify the minimum acme and certbot version as the current plugin
@@ -21,12 +23,6 @@ if not os.environ.get("SNAP_BUILD"):
             f"certbot>={version}",
         ]
     )
-elif "bdist_wheel" in sys.argv[1:]:
-    raise RuntimeError(
-        "Unset SNAP_BUILD when building wheels " "to include certbot dependencies."
-    )
-if os.environ.get("SNAP_BUILD"):
-    install_requires.append("packaging")
 
 docs_extras = [
     "Sphinx>=1.0",  # autodoc_member_order = 'bysource', autodoc_default_flags
