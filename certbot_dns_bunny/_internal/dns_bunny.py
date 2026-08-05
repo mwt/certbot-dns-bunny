@@ -177,22 +177,29 @@ class _BunnyClient:
         :raises certbot.errors.PluginError: if no zone_id is found.
         """
 
+        # Gather which domain could be the correct one
         zone_name_guesses = dns_common.base_domain_name_guesses(domain)
 
-        # Note: this request may not contain the zone if there are more than 1000 zones!
-        dnszone_request = requests.get(
-            "https://api.bunny.net/dnszone", headers=self.headers
-        )
+        # Iterate through zones and find the first one that's in our list of guesses (earlier guesses are more specific)
+        for zone_name_guess in reversed(zone_name_guesses[:-1]):
+            logger.debug("Checking bunny domain %s", zone_name_guess)
 
-        # make sure that bunny api responded with code 200
-        if dnszone_request.status_code != 200:
-            raise errors.PluginError(
-                f"API error ({dnszone_request.status_code}): {dnszone_request.text}"
+            dnszone_request = requests.get(
+                "https://api.bunny.net/dnszone",
+                headers=self.headers,
+                params={
+                    'search': zone_name_guess
+                }
             )
 
-        dnszones = dnszone_request.json()
-        # Iterate through zones and find the first one that's in our list of guesses (earlier guesses are more specific)
-        for zone_name_guess in zone_name_guesses:
+            # make sure that bunny api responded with code 200
+            if dnszone_request.status_code != 200:
+                raise errors.PluginError(
+                    f"API error ({dnszone_request.status_code}): {dnszone_request.text}"
+                )
+
+            dnszones = dnszone_request.json()
+
             for dnszone in dnszones["Items"]:
                 if dnszone["Domain"] == zone_name_guess:
                     zone_id = dnszone["Id"]
@@ -202,7 +209,10 @@ class _BunnyClient:
                         domain,
                         dnszone["Domain"],
                     )
-                    return zone_id, zone_name_guess
+                    return zone_id, zone_name_guesszone_name_guess in reversed(zone_name_guesses[:-1]):
+
+            logger.debug("Failed to find the dns zone")
+
         raise errors.PluginError("Could not find zone in account.")
 
     def _find_txt_record_id(
